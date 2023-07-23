@@ -5,12 +5,34 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    
+    <script src="https://kit.fontawesome.com/fb873a8e10.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
+    <header>
+      <ul>
+        <% if user_signed_in? %>
+          <li>
+            <%= link_to "Home", user_path %>          
+          </li>
+          <li>
+            <%= link_to "Users", user_path(surrent_user.id) %>          
+          </li>
+          <li>
+            <%= link_to "Books", books_path %>          
+          </li>
+          <li>
+            <%= link_to "Log out", books_path, method: :delete %>          
+          </li>
+        <% else %>
+          <li>
+            <i class="fa-solid fa-link"></i><%= link_to "About", homes_about_path %>
+          </li>
+        <% end %>
+      </ul>
+    </header>
     <%= yield %>
   </body>
 </html>
