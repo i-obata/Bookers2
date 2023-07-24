@@ -15,24 +15,32 @@
       <ul>
         <% if user_signed_in? %>
           <li>
-            <%= link_to "Home", user_path %>          
+            <i class="fa-solid fa-house-chimney-user"></i><%= link_to "Home", user_registration_path %>
           </li>
           <li>
-            <%= link_to "Users", user_path(surrent_user.id) %>          
+            <i class="fa-solid fa-users"></i><%= link_to "Users", user_path(current_user.id) %>          
           </li>
           <li>
-            <%= link_to "Books", books_path %>          
+            <i class="fa-solid fa-book-open"></i><%= link_to "Books", books_path %>          
           </li>
           <li>
-            <%= link_to "Log out", books_path, method: :delete %>          
+            <i class="fa-solid fa-right-from-bracket"></i><%= link_to "Log out", destroy_user_session_path, method: :delete %>          
           </li>
         <% else %>
           <li>
+            <i class="fa-solid fa-house-chimney"></i><%= link_to "Home", root_path %>
+          </li>
+          <li>
             <i class="fa-solid fa-link"></i><%= link_to "About", homes_about_path %>
+          </li>
+          <li>
+            <i class="fa-solid fa-user-plus"></i><%= link_to "Sign up", new_user_registration_path %>
+          </li>
+          <li>
+            <i class="fa-solid fa-right-to-bracket"></i><%= link_to "Log up", new_user_session_path %>
           </li>
         <% end %>
       </ul>
     </header>
-    <%= yield %>
   </body>
 </html>
