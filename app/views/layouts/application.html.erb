@@ -11,36 +11,44 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <header>
-      <ul>
-        <% if user_signed_in? %>
-          <li>
-            <i class="fa-solid fa-house-chimney-user"></i><%= link_to "Home", user_registration_path %>
-          </li>
-          <li>
-            <i class="fa-solid fa-users"></i><%= link_to "Users", user_path(current_user.id) %>          
-          </li>
-          <li>
-            <i class="fa-solid fa-book-open"></i><%= link_to "Books", books_path %>          
-          </li>
-          <li>
-            <i class="fa-solid fa-right-from-bracket"></i><%= link_to "Log out", destroy_user_session_path, method: :delete %>          
-          </li>
-        <% else %>
-          <li>
-            <i class="fa-solid fa-house-chimney"></i><%= link_to "Home", root_path %>
-          </li>
-          <li>
-            <i class="fa-solid fa-link"></i><%= link_to "About", homes_about_path %>
-          </li>
-          <li>
-            <i class="fa-solid fa-user-plus"></i><%= link_to "Sign up", new_user_registration_path %>
-          </li>
-          <li>
-            <i class="fa-solid fa-right-to-bracket"></i><%= link_to "Log up", new_user_session_path %>
-          </li>
-        <% end %>
-      </ul>
+    <header class="shadow-sm">
+      <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand p-3" href= "/">Bookers</a>
+          <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                  <a class=nav-link text-light href="/users"><i class="fa-solid fa-house-chimney-user"></i>Home</a>
+              </li>
+              <li class="nav-item">
+                <a class=nav-link text-light href="/users/#{current_user.id}"><i class="fa-solid fa-users"></i>Users</a>          
+              </li>
+              <li class="nav-item">
+                <a class=nav-link text-light href="/books"><i class="fa-solid fa-book-open"></i>Books</a>          
+              </li>
+              <li class="nav-item">
+                <a class=nav-link text-light href="/users/sign_out"><i class="fa-solid fa-right-from-bracket"></i>Log out</a>          
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <a class=nav-link text-light href="/"><i class="fa-solid fa-house-chimney"></i>Home</a>
+              </li>
+              <li class="nav-item">
+                <a class=nav-link text-light href="/homes/about"><i class="fa-solid fa-link"></i>About</a>
+              </li>
+              <li class="nav-item">
+                <a class=nav-link text-light href="/users/sign_up"><i class="fa-solid fa-user-plus"></i>Sign up</a>
+              </li>
+              <li class="nav-item">
+                <a class=nav-link text-light href="/users/sign_in"><i class="fa-solid fa-right-to-bracket"></i>Log up</a>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
     </header>
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>
