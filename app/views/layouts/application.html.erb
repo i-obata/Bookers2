@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
   <head>
     <title>Bookers2</title>
@@ -12,43 +11,62 @@
   </head>
   <body>
     <header class="shadow-sm">
-      <nav class="navbar navbar-dark bg-dark">
+      <nav class="navbar navbar-expand navbar-dark bg-dark">
         <div class="container">
-          <a class="navbar-brand p-3" href= "/">Bookers</a>
-          <ul class="navbar-nav ml-auto">
-            <% if user_signed_in? %>
-              <li class="nav-item">
-                  <a class=nav-link text-light href="/users"><i class="fa-solid fa-house-chimney-user"></i>Home</a>
-              </li>
-              <li class="nav-item">
-                <a class=nav-link text-light href="/users/#{current_user.id}"><i class="fa-solid fa-users"></i>Users</a>          
-              </li>
-              <li class="nav-item">
-                <a class=nav-link text-light href="/books"><i class="fa-solid fa-book-open"></i>Books</a>          
-              </li>
-              <li class="nav-item">
-                <a class=nav-link text-light href="/users/sign_out"><i class="fa-solid fa-right-from-bracket"></i>Log out</a>          
-              </li>
-            <% else %>
-              <li class="nav-item">
-                <a class=nav-link text-light href="/"><i class="fa-solid fa-house-chimney"></i>Home</a>
-              </li>
-              <li class="nav-item">
-                <a class=nav-link text-light href="/homes/about"><i class="fa-solid fa-link"></i>About</a>
-              </li>
-              <li class="nav-item">
-                <a class=nav-link text-light href="/users/sign_up"><i class="fa-solid fa-user-plus"></i>Sign up</a>
-              </li>
-              <li class="nav-item">
-                <a class=nav-link text-light href="/users/sign_in"><i class="fa-solid fa-right-to-bracket"></i>Log up</a>
-              </li>
-            <% end %>
-          </ul>
+          <a class="navbar-brand p-2" href= "/">Bookers</a>
+            <ul class="navbar-nav ml-auto">
+              <% if user_signed_in? %>
+                <li class="nav-item">
+                    <a class=nav-link text-light href="/users"><i class="fa-solid fa-house-chimney-user"></i>Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class=nav-link text-light href="/users/#{current_user.id}"><i class="fa-solid fa-users"></i>Users</a>          
+                </li>
+                <li class="nav-item">
+                  <a class=nav-link text-light href="/books"><i class="fa-solid fa-book-open"></i>Books</a>          
+                </li>
+                <li class="nav-item">
+                  <!--<a class=nav-link text-light href="/users/sign_out"><i class="fa-solid fa-right-from-bracket"></i>Log out</a>          -->
+                   <i class="fa-solid fa-right-from-bracket"><%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %></i>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <a class=nav-link text-light href="/"><i class="fa-solid fa-house-chimney"></i>Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class=nav-link text-light href="/homes/about"><i class="fa-solid fa-link"></i>About</a>
+                </li>
+                <li class="nav-item">
+                  <a class=nav-link text-light href="/users/sign_up"><i class="fa-solid fa-user-plus"></i>Sign up</a>
+                </li>
+                <li class="nav-item">
+                  <a class=nav-link text-light href="/users/sign_in"><i class="fa-solid fa-right-to-bracket"></i>Log up</a>
+                </li>
+              <% end %>
+            </ul>
+          </div>
         </div>
       </nav>
     </header>
     <main>
-      <%= yield %>
+      <div class="container">
+        <% if user_signed_in? %>
+          <div class="row">
+            
+            <!--サイドバー-->
+            <div class="col-4">
+              
+            </div>
+            
+            <!--ブログ-->
+            <div class="col-8">
+              <%= yield %>
+            </div>
+          </div>
+        <% else %>
+          <%= yield %>
+        <% end %>
+      </div>
     </main>
   </body>
 </html>
