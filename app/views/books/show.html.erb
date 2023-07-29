@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <main>
+            <%= form_with model: @book do |f| %>
+                <h2>Book detail</h2>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <!--投稿したuserの画像が設定される-->
+                            <td></td>
+                            <td><%= @book.title %></td>
+                            <td><%= @book.body %></td>
+                            <td></td>
+                            <td>
+                                <button type="button" class="btn btn-danger">
+                                    <%= link_to "Destroy","/books/#{@book.id}", method: :delete, "data-confirm" => "Do you really want to delete it?" %>
+                                </button>
+                            </td>
+                        <tr>
+                    </tbody>
+                </table>
+            <% end %>
+        </main>
+    </body>
+</html>

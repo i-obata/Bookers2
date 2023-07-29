@@ -1,0 +1,29 @@
+<html>
+    <body>
+        <main>
+            <div class="container">
+                <div class="d-flex flex-column bd-highlight mb-3">
+                    <div class="mx-auto col-7">
+                        <h2 class="p-2 bd-highlight">Editing Book</h2>
+                        <%= form_with model: @book do |f| %>
+                            <div class="field">
+                                <%= f.label :title %><br />
+                                <%= f.text_field :title, class: "form-control", style: "width:100%" %>
+                            </div>
+
+                            <div class="field">
+                                <%= f.label :Opinion %><br />
+                                <%= f.text_field :body, class: "form-control", style: "width:100%" %>
+                            </div>
+                            
+                            <div class="actions">
+                                <%= f.submit "Update Book", class: "btn btn-secondary" %>
+                            </div>
+                            <p><%= link_to "Show","/books/#{@book.id}" %>｜<%= link_to "Back","/books" %></p>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

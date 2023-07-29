@@ -2,21 +2,21 @@
 <html>
     <body>
         <main>
-            <h2>Books</h2>
+            <h2>Users</h2>
             <table class="table">
                 <thead>
                     <tr>
+                        <th scope="col"><strong>Image</strong></th>
+                        <th scope="col"><strong>name</strong></th>
                         <th scope="col" colspan = "1"></th>
-                        <th scope="col"><strong>Title</strong></th>
-                        <th scope="col"><strong>Opinion</strong></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <% @books.each do |book| %>
+                    <% @users.each do |user| %>
                         <tr>
                             <!--投稿したuserの画像が設定される-->
-                            <td><%= book.title %></td>
-                            <td><%= book.body %></td>
+                            <td><%= user.name %></td>
+                            <td><%= link_to "Show", user_path(user.id) %></td>
                         <tr>
                     <% end %>
                 </tbody>

@@ -1,2 +1,27 @@
-<h1>Uesrs#show</h1>
-<p>Find me in app/views/uesrs/show.html.erb</p>
+<!DOCTYPE html>
+<html>
+    <body>
+        <main>
+            <h2>Books</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col" colspan = "1"></th>
+                        <th scope="col"><strong>Title</strong></th>
+                        <th scope="col"><strong>Opinion</strong></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @books.each do |book| %>
+                        <tr>
+                            <!--投稿したuserの画像が設定される-->
+                            <td><%= book.title %></td>
+                            <td><%= book.body %></td>
+                        <tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </main>
+    </body>
+</html>
+    

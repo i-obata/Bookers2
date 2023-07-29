@@ -1,2 +1,30 @@
-<h1>Uesrs#edit</h1>
-<p>Find me in app/views/uesrs/edit.html.erb</p>
+<html>
+    <body>
+        <main>
+            <div class="container">
+                <div class="d-flex flex-column bd-highlight mb-3">
+                    <div class="mx-auto col-7">
+                        <h2 class="p-2 bd-highlight">User info</h2>
+                        <%= form_with model: @user do |f| %>
+                            <div class="field">
+                                <%= f.label :name %><br />
+                                <%= f.text_field :name, class: "form-control", style: "width:100%" %>
+                            </div>
+                             
+                             <!--ユーザーのimage画像-->
+                            
+                            <div class="field">
+                                <%= f.label :introduction %><br />
+                                <%= f.text_field :introduction, class: "form-control", style: "width:100%" %>
+                            </div>
+                            
+                            <div class="actions">
+                                <%= f.submit "Update User", class: "btn btn-secondary" %>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
