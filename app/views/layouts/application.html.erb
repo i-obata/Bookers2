@@ -17,7 +17,7 @@
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
                 <li class="nav-item">
-                   <i class="fa-solid fa-house-chimney-user nav-link text-light"><%= link_to 'Home', user_path(current_user.id), class: 'nav-link text-dark' %></i>
+                   <i class="fa-solid fa-house-chimney-user nav-link text-white"><%= link_to 'Home', user_path(current_user.id), class: 'nav-link text-dark' %></i>
                 </li>
                 <li class="nav-item">
                   <a class=nav-link text-light href="/users"><i class="fa-solid fa-users"></i>Users</a>          
@@ -50,7 +50,11 @@
     </header>
     <main>
       <% if user_signed_in? %>
-        <% if current_page?(current_user) %>
+        <% if current_page?(edit_user_path(current_user.id)) %>
+          <%= yield %>
+        <% elsif current_page?(edit_book_path(current_user.id)) %>
+          <%= yield %>
+        <% else %>
           <div><%= flash[:notice] %></div>
           <div class="container">
             <div class="row">
@@ -60,7 +64,6 @@
   
                 <!--ユーザー情報-->
                 <h2>User info</h2>
-                <!--ユーザーの画像を表示-->
                 <table class="table">
                   <tbody>
                     <tr>
@@ -76,17 +79,17 @@
                 <%= link_to edit_user_path(current_user.id), class: "btn btn-outline-secondary btn-block", method: :get do %>
                     <i class="fa-solid fa-user-gear"></i>
                 <% end %>
-                
+
                 <!--投稿機能-->
                 <h2>New book</h2>
                 <%= form_with model: @book do |f| %>
-                  <p>Title</p>
-                  <div class="form-label">
+                  <div class="form-group">
+                    <%= f.label :Title %><br />
                     <%= f.text_field :title, class: "form-control", style: "width:100%" %>
                   </div>
               
-                  <p>Opinion</p>
-                  <div class="form-label">
+                  <div class="form-group">
+                    <%= f.label :Opinion %><br />
                     <%= f.text_area :body, class: "form-control", style: "width:100%" %>
                   </div>
                   
@@ -100,12 +103,17 @@
               </div>
             </div>
           </div>
-        <% else %>
-          <%= yield %>
         <% end %>
       <% else %>
         <%= yield %>
       <% end %>
     </main>
+    <footer>
+      <div class="container">
+        <div class="row">
+          <p class="mx-auto">CopyRight Infratop.inc</p>          
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
