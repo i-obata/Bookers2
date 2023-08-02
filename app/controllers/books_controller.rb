@@ -21,6 +21,7 @@ class BooksController < ApplicationController
     
     def edit
         @book = Book.find(params[:id])
+        # @userの作成から
     end
     
     def update

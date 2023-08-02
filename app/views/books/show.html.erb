@@ -8,13 +8,18 @@
                     <tbody>
                         <tr>
                             <!--投稿したuserの画像が設定される-->
-                            <td></td>
-                            <td><%= @book.title %></td>
-                            <td><%= @book.body %></td>
-                            <td></td>
+                            <td><%= @user.name %></td>
+                            <td><%= f.title %></td>
+                            <td><%= f.body %></td>
+                            <% if @user.id == current_user.id? 
                             <td>
                                 <button type="button" class="btn btn-danger">
-                                    <%= link_to "Destroy","/books/#{@book.id}", method: :delete, "data-confirm" => "Do you really want to delete it?" %>
+                                    <%= link_to "Destroy","/books/#{f.id}", method: :delete, "data-confirm" => "Do you really want to delete it?" %>
+                                </button>                                
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger">
+                                    <%= link_to "Destroy","/books/#{f.id}", method: :delete, "data-confirm" => "Do you really want to delete it?" %>
                                 </button>
                             </td>
                         <tr>
