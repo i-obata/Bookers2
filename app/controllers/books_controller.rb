@@ -2,6 +2,8 @@ class BooksController < ApplicationController
     
     def index
         @books = Book.all
+        @book = Book.new
+        @user = current_user
     end
     
     def create
@@ -9,7 +11,7 @@ class BooksController < ApplicationController
         @book.user_id = current_user.id
         if @book.save
             flash[:notice] = "successfully submitted the book!"
-            redirect_to user_path(@book.user_id)
+            redirect_to book_path(@book.id)
         else
             render :index
         end
@@ -17,11 +19,12 @@ class BooksController < ApplicationController
     
     def show
         @book = Book.find(params[:id])
+        @user = User.find_by(id: @book.user_id)
     end
     
     def edit
         @book = Book.find(params[:id])
-        # @userの作成から
+        @user = User.find_by(id: @book.user_id)
     end
     
     def update
@@ -45,10 +48,6 @@ class BooksController < ApplicationController
     private
     
     def book_params
-        params.permit(:title, :body)
-    end
-    
-    def book_update_params
         params.require(:book).permit(:title, :body)
     end
 end

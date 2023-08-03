@@ -1,7 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <body>
-        <main>
+<div class="container">
+    <div class="row">
+        <%= render 'layouts/userinfo', {user: @user, book: @book} %>
+        <div class="col-8 offset-1">
             <h2>Books</h2>
             <table class="table">
                 <thead>
@@ -21,7 +21,6 @@
                     <% end %>
                 </tbody>
             </table>
-        </main>
-    </body>
-</html>
-    
+        </div>
+    </div>
+</div>
