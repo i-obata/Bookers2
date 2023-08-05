@@ -9,8 +9,10 @@
                         <td><%= image_tag @user.get_profile_image(100,100) %><br><%= link_to @user.name, user_path(@user.id) %></td>
                         <td><%= @book.title %></td>
                         <td><%= @book.body %></td>
-                        <% if @user.id == current_user.id? %>
-                        <% else %>
+                        
+                        <!--カレントユーザの場合のみ、
+                        「Edit」ボタン「Destroy」ボタンを表示-->
+                        <% if @user.id =! current_user.id? %>
                             <td>
                                 <button type="button" class="btn btn-success">
                                     <%= link_to "Edit", edit_book_path{@book.id}, class: "text-light text-decoration-none" %>

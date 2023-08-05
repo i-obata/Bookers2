@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   
   def index
     @users = User.all
+    @user = current_user
+    @book = Book.new
   end
   
   def show
@@ -12,18 +14,25 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    
+    # サイドバーにカレントユーザ以外が表示された状態で
+    # editを処理した場合はshowを処理する
+    if @user.id =! current_user.id
+      redirect_to user_path(current_user.id)
+    end
   end
   
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
+    flash[:notice] = "successfully edited the user!"
     redirect_to user_path(@user.id)
   end
   
   private
   
   def user_params
-    params.require(:user).permit(:name, :introduction, :iamge)
+    params.require(:user).permit(:name, :introduction, :profile_image)
   end
   
   def is_matching_login_user
