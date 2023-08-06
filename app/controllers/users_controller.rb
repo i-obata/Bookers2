@@ -9,24 +9,22 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @book = Book.new
     @books = @user.books
   end
 
   def edit
     @user = User.find(params[:id])
-    
-    # サイドバーにカレントユーザ以外が表示された状態で
-    # editを処理した場合はshowを処理する
-    if @user.id =! current_user.id
-      redirect_to user_path(current_user.id)
-    end
   end
   
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    flash[:notice] = "successfully edited the user!"
-    redirect_to user_path(@user.id)
+    if @user.update(user_params)
+      flash[:notice] = "successfully edited the user!"
+      redirect_to user_path(@user.id)
+    else
+      render :edit
+    end
   end
   
   private
@@ -38,7 +36,7 @@ class UsersController < ApplicationController
   def is_matching_login_user
     user = User.find(params[:id])
     unless user.id == current_user.id
-      redirect_to root_path
+      redirect_to user_path(current_user.id)
     end
   end
   

@@ -1,18 +1,25 @@
+<%= render 'layouts/errormesseag', {target: @booknew} %>
+
 <div class="container">
     <div class="row">
-        <%= render 'layouts/userinfo', {user: @user, book: @book} %>
-        <div class="col-8 offset-1">
+        <%= render 'layouts/userinfo', {user: @user, book: @booknew} %>
+        <div class="col-md-8 offset-md-1">
             <h2>Book detail</h2>
             <table class="table">
                 <tbody>
                     <tr>
-                        <td><%= image_tag @user.get_profile_image(100,100) %><br><%= link_to @user.name, user_path(@user.id) %></td>
+                        <td>
+                            <%= link_to user_path(@user.id) do %>
+                                <%= image_tag @user.get_profile_image(100,100) %><br>
+                                <%= @user.name %>
+                            <% end %>
+                        </td>
                         <td><%= @book.title %></td>
                         <td><%= @book.body %></td>
                         
                         <!--カレントユーザの場合のみ、
                         「Edit」ボタン「Destroy」ボタンを表示-->
-                        <% if @user.id =! current_user.id? %>
+                        <% if @user.id == current_user.id %>
                             <td>
                                 <button type="button" class="btn btn-success">
                                     <%= link_to "Edit", edit_book_path{@book.id}, class: "text-light text-decoration-none" %>

@@ -1,16 +1,11 @@
-<html>
-    <body>
-        <main>
-            <div class="container">
-                <div class="d-flex flex-column bd-highlight mb-3">
-                    <div class="mx-auto col-7">
-                        <h2 class="p-2 bd-highlight">welcome to<i class="fa-solid fa-book"></i><strong>Bookers!!</strong></h2>
-                        <p class="p-2 bd-highlight">In<i class="fa-solid fa-book"></i><strong>bookers,</strong><br>you can share and exchange your opinions, inpressions, and emotions<br>about various books!</p>
-                        <%= link_to 'Log in', user_session_path, class: "btn btn-info btn-block" %>
-                        <%= link_to 'Sign up', new_user_registration_path, class: "btn btn-success btn-block" %>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </body>
-</html>
+<%= flash[:notice] %>
+<div class="container">
+    <div class="d-flex flex-column bd-highlight mb-3">
+        <div class="mx-auto col-7">
+            <h2 class="p-2 bd-highlight">welcome to<i class="fa-solid fa-book"></i><strong>Bookers!!</strong></h2>
+            <p class="p-2 bd-highlight">In<i class="fa-solid fa-book"></i><strong>bookers,</strong><br>you can share and exchange your opinions, inpressions, and emotions<br>about various books!</p>
+            <%= link_to 'Log in', user_session_path, class: "btn btn-info btn-block" %>
+            <%= link_to 'Sign up', new_user_registration_path, class: "btn btn-success btn-block" %>
+        </div>
+    </div>
+</div>

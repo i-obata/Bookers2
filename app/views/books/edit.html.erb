@@ -1,6 +1,8 @@
+<%= render 'layouts/errormesseag', {target: @book} %>
+
 <div class="container">
     <div class="d-flex flex-column bd-highlight mb-3">
-        <div class="mx-auto col-8">
+        <div class="mx-auto col-md-8">
             <h2 class="p-2 bd-highlight">Editing Book</h2>
             <%= form_with model: @book do |f| %>
                 <div class="form-group">
@@ -16,7 +18,7 @@
                 <div class="actions">
                     <%= f.submit "Update Book", class: "btn btn-secondary" %>
                 </div>
-                <p><%= link_to "Show",book_path(@book.id) %>｜<%= link_to "Back",book_path %></p>
+                <p><%= link_to "Show",book_path(@book.id) %>｜<%= link_to "Back",books_path %></p>
             <% end %>
         </div>
     </div>

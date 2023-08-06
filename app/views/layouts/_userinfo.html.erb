@@ -1,4 +1,4 @@
-<div class="col-3">
+<div class="col-md-3">
     <!--ユーザー情報-->
     <h2>User info</h2>
     <%= image_tag user.get_profile_image(100,100) %>
@@ -15,7 +15,7 @@
         </tbody>
     </table>
     <%= link_to edit_user_path(user.id), class: "btn btn-outline-secondary btn-block", method: :get do %>
-        <i class="fa-solid fa-user-gear"></i>
+        <i class="fas fa-user-cog"></i>
     <% end %>
 
     <!--投稿機能-->
